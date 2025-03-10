@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不動産投資 初心者ガイド</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+        
+        :root {
+            --color-primary: #034159;
+            --color-secondary: #025951;
+            --color-tertiary: #02735E;
+            --color-accent: #038C3E;
+            --color-highlight: #0CF25D;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Zen Kurenaido', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.4;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px dashed var(--color-tertiary);
+            position: relative;
+        }
+        
+        .title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-tertiary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 0.5rem 0;
+            position: relative;
+            z-index: 1;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: var(--color-highlight);
+            bottom: 0;
+            left: 0;
+            transform: skew(-12deg) translateY(8px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .date {
+            font-family: 'Yomogi', cursive;
+            font-size: 16px;
+            color: #475569;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 18px;
+            color: #1e40af;
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .section-title::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-title {
+            font-family: 'Kaisei Decol', serif;
+            font-size: 16px;
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .card-title::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 6px;
+            background: var(--color-highlight);
+            bottom: -2px;
+            left: 0;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .hand-drawn-box {
+            border: 2px solid var(--color-primary);
+            border-radius: 12px;
+            padding: 1rem;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-top: 1rem;
+        }
+        
+        .hand-drawn-box::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed var(--color-tertiary);
+            border-radius: 16px;
+            z-index: -1;
+        }
+        
+        .hand-drawn-text {
+            font-family: 'Yomogi', cursive;
+            font-size: 14px;
+            color: #334155;
+        }
+        
+        .key-point {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .key-point::before {
+            content: '✎';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            animation: wiggle 3s ease-in-out infinite;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--color-highlight) 30%, transparent 70%);
+            padding: 0 3px;
+            font-weight: bold;
+        }
+        
+        .arrow {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: var(--color-tertiary);
+            animation: bounce 2s infinite;
+        }
+        
+        .icon {
+            display: inline-block;
+            margin-right: 0.5rem;
+            color: var(--color-accent);
+            animation: spin 10s linear infinite;
+        }
+        
+        .list-item {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .list-item::before {
+            content: '•';
+            position: absolute;
+            left: 0.5rem;
+            color: var(--color-tertiary);
+        }
+        
+        .bubble {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--color-primary);
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .bubble::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 12px solid var(--color-primary);
+            bottom: -12px;
+            left: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 14px;
+            color: #475569;
+            margin-top: 2rem;
+            border-top: 3px dashed var(--color-tertiary);
+        }
+        
+        .percentage-box {
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0.5rem 0;
+            position: relative;
+            animation: pulse 3s infinite;
+        }
+        
+        .note-tag {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--color-highlight);
+            color: var(--color-primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transform: rotate(15deg);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-50%, -60%); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* 個別のセクションスタイル */
+        .section-reason::before { content: "\f3d1"; } /* お金 */
+        .section-caution::before { content: "\f071"; } /* 警告 */
+        .section-recommend::before { content: "\f015"; } /* 家 */
+        .section-profit::before { content: "\f643"; } /* 円グラフ */
+        .section-important::before { content: "\f0eb"; } /* 電球 */
+        .section-mindset::before { content: "\f0c9"; } /* チェックリスト */
+        
+        /* 装飾要素 */
+        .deco-circle {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(12, 242, 93, 0.2) 0%, rgba(2, 115, 94, 0.05) 70%, transparent 100%);
+            z-index: -2;
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        .deco-circle:nth-child(1) {
+            top: -100px;
+            right: -100px;
+        }
+        
+        .deco-circle:nth-child(2) {
+            bottom: -150px;
+            left: -150px;
+        }
+        
+        .deco-line {
+            position: absolute;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, transparent, var(--color-tertiary), transparent);
+            left: 33.3%;
+            top: 0;
+            z-index: -1;
+        }
+        
+        .deco-line:nth-child(2) {
+            left: 66.6%;
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .deco-line {
+                left: 50%;
+            }
+            
+            .deco-line:nth-child(2) {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .deco-line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 装飾要素 -->
+        <div class="deco-circle"></div>
+        <div class="deco-circle"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        
+        <!-- ヘッダー -->
+        <header class="header">
+            <h1 class="title">
+                <i class="fa-solid fa-building icon"></i>
+                不動産投資 初心者ガイド
+            </h1>
+            <div class="date">作成日: 2025年3月7日</div>
+        </header>
+        
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- 左カラム -->
+            <div class="column">
+                <!-- 不動産投資を始める理由 -->
+                <section class="section">
+                    <h2 class="section-title section-reason">不動産投資を始める理由</h2>
+                    <div class="card">
+                        <p class="hand-drawn-text">
+                            不動産投資は<span class="highlight">安定した収益</span>を得やすく、インフレにも強い資産形成手段として人気があります。
+                        </p>
+                        
+                        <div class="bubble">
+                            <h3 class="card-title">投資メリット <i class="fa-solid fa-chart-line icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                家賃収入や物件売却益は<span class="highlight">長期的に安定した収入</span>を得られるのが魅力です！
+                            </p>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">資産価値 <i class="fa-solid fa-shield-alt icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                不動産はインフレに強く、実物資産として<span class="highlight">価値が維持されやすい</span>のが特徴です。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 初心者が気をつけるべき事 -->
+                <section class="section">
+                    <h2 class="section-title section-caution">初心者が気をつけるべき事</h2>
+                    <div class="card">
+                        <p class="hand-drawn-text">
+                            不動産投資で成功するためには、エリア選びや物件選定が非常に重要です。
+                        </p>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">エリア選び <i class="fa-solid fa-map-marker-alt icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                <span class="highlight">都市部や需要が安定しているエリア</span>を選ぶと、空室リスクを低減できます。
+                            </p>
+                            <div class="key-point">
+                                地方都市や人口減少地域はリスクが高くなるため慎重に！
+                            </div>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">物件選定 <i class="fa-solid fa-home icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                新築物件は価格が高いため、<span class="highlight">中古物件</span>の方がコストパフォーマンスが良いことがあります。
+                            </p>
+                            <div class="key-point">
+                                状態や築年数をよく確認し、過度な修繕が必要な物件は避けましょう。
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- 中央カラム -->
+            <div class="column">
+                <!-- 初心者におすすめの物件 -->
+                <section class="section">
+                    <h2 class="section-title section-recommend">初心者におすすめの物件</h2>
+                    <div class="card">
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">物件の種類 <i class="fa-solid fa-building icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                初心者には<span class="highlight">都内の中古1棟物件</span>がオススメです。
+                            </p>
+                            <div class="key-point">
+                                駅近で利便性が高いエリアであれば、空室リスクが低く安定した収益が見込めます。
+                            </div>
+                            <div class="key-point">
+                                新築物件や過剰に修繕が必要な物件は避けるのが賢明です。
+                            </div>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">購入方法 <i class="fa-solid fa-hand-holding-usd icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                不動産投資の融資は慎重に評価されます。<span class="highlight">過度な借入れを避け</span>、自己資金や融資条件をしっかり確認しましょう。
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 利回りとキャッシュフローの管理 -->
+                <section class="section">
+                    <h2 class="section-title section-profit">利回りとキャッシュフローの管理</h2>
+                    <div class="card">
+                        <p class="hand-drawn-text">
+                            安定した投資を行うためには、利回りとキャッシュフローの管理が重要です。
+                        </p>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">利回り <i class="fa-solid fa-percent icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                高利回り物件は魅力的に見えますが、過度な利回りを追求すると、空室リスクや修繕費が増える可能性があります。
+                            </p>
+                            <div style="display: flex; align-items: center; justify-content: center; margin: 1rem 0;">
+                                <div class="percentage-box">
+                                    8%
+                                </div>
+                                <span style="margin: 0 1rem;">〜</span>
+                                <div class="percentage-box">
+                                    10%
+                                </div>
+                                <div class="note-tag">
+                                    !
+                                </div>
+                            </div>
+                            <p class="hand-drawn-text" style="text-align: center;">
+                                <span class="highlight">理想的な利回りの目安</span>
+                            </p>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">キャッシュフロー <i class="fa-solid fa-money-bill-wave icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                初めての物件選びでは、<span class="highlight">ローン返済後にも利益が残る物件</span>を選ぶことが大切です。
+                            </p>
+                            <div class="key-point">
+                                空室や修繕費が少なく、安定した運営ができる物件を選びましょう。
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- 右カラム -->
+            <div class="column">
+                <!-- 物件選びの最重要ポイント -->
+                <section class="section">
+                    <h2 class="section-title section-important">物件選びの最重要ポイント</h2>
+                    <div class="card">
+                        <p class="hand-drawn-text">
+                            成功する不動産投資のためには、物件選びがカギとなります。
+                        </p>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">安く買うこと <i class="fa-solid fa-tags icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                <span class="highlight">適正価格で物件を購入する</span>ことが最も重要です。
+                            </p>
+                            <div class="key-point">
+                                市場価格と乖離していないかを確認し、リスクを減らすために安く購入することを心がけましょう。
+                            </div>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">将来性のあるエリア選び <i class="fa-solid fa-rocket icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                物件が<span class="highlight">将来的に価値を維持または上昇するエリア</span>にあることが重要です。
+                            </p>
+                            <div class="key-point">
+                                立地や周辺環境の発展性を見極め、長期的に価値が上がる可能性のあるエリアを選ぶことが成功へのカギです。
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 不動産投資を成功させるための心構え -->
+                <section class="section">
+                    <h2 class="section-title section-mindset">不動産投資を成功させるための心構え</h2>
+                    <div class="card">
+                        <div class="bubble">
+                            <h3 class="card-title">長期的視点 <i class="fa-solid fa-hourglass-half icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                不動産投資は<span class="highlight">長期的な視点</span>で取り組むことが重要です。
+                            </p>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">リスク管理 <i class="fa-solid fa-shield-alt icon"></i></h3>
+                            <div class="key-point">
+                                初期投資額や融資の条件をしっかり確認
+                            </div>
+                            <div class="key-point">
+                                空室リスクや修繕費用を事前に計算
+                            </div>
+                            <div class="key-point">
+                                余裕を持った資金計画を立てる
+                            </div>
+                        </div>
+                        
+                        <div class="hand-drawn-box">
+                            <h3 class="card-title">確実な一歩から <i class="fa-solid fa-shoe-prints icon"></i></h3>
+                            <p class="hand-drawn-text">
+                                慎重に計画を立てることで、<span class="highlight">安定した収益</span>を確保することができます。初めての投資は特に慎重に！
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <footer class="footer">
+            <p>© 2025 不動産投資 初心者ガイド | 作成: グラフィックレコーディングAI</p>
+        </footer>
+    </div>
+</body>
+</html>
